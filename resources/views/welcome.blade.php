@@ -166,7 +166,7 @@
                 close: true,
                 gravity: "top",
                 position: "right",
-                backgroundColor: "#4CAF50", // Màu xanh thành công
+                backgroundColor: "#4CAF50", // Màu xanh thành côn
                 style: {
                     fontSize: "16px",
                     fontWeight: "bold",
