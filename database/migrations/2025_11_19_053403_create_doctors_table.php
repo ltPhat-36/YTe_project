@@ -10,18 +10,23 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
+
+            // QUAN TRỌNG: Đây là dòng tạo liên kết với bảng users
+            // constrained() sẽ tự hiểu là nối với bảng 'users' nhờ vào tên cột 'user_id'
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
             $table->foreignId('hospital_id')->constrained('hospitals')->onDelete('cascade');
             $table->foreignId('specialty_id')->constrained('specialties')->onDelete('cascade');
+            
             $table->string('name');
             $table->string('avatar')->nullable();
             
-            // --- CÁC CỘT MỚI ĐỂ GIỐNG ẢNH ---
-            $table->text('treatments')->nullable(); // Chuyên trị (ví dụ: Phẫu thuật nội soi...)
-            $table->longText('experience')->nullable(); // Kinh nghiệm (lưu dạng HTML list)
-            // --------------------------------
-
-            $table->text('bio')->nullable(); // Giới thiệu
+            // Các cột thông tin thêm
+            $table->text('treatments')->nullable(); 
+            $table->longText('experience')->nullable(); 
+            $table->text('bio')->nullable(); 
             $table->integer('price')->default(0);
+            
             $table->timestamps();
         });
     }

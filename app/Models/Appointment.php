@@ -15,7 +15,8 @@ class Appointment extends Model
         'appointment_date',
         'appointment_time',
         'symptoms',
-        'status'
+        'status',
+        'diagnosis', // <-- MỚI THÊM
     ];
 
     // Quan hệ: Lịch hẹn thuộc về 1 User (Bệnh nhân)

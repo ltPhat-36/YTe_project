@@ -11,14 +11,20 @@ class Hospital extends Model
 
     protected $fillable = [
         'name',
+        'type',
         'address',
-        'description',
+        'hotline',
         'logo',
-        'hotline'
+        'description',
+        'work_hours', // <--- Thêm dòng này
     ];
-
     // Quan hệ: 1 Bệnh viện có nhiều Bác sĩ
     public function doctors() {
         return $this->hasMany(Doctor::class);
     }
+    // Thêm hàm này vào model Hospital
+public function images()
+{
+    return $this->hasMany(HospitalImage::class);
+}
 }

@@ -10,27 +10,30 @@ class Doctor extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',      // <--- QUAN TRỌNG: Cho phép lưu ID tài khoản
         'hospital_id',
         'specialty_id',
         'name',
         'avatar',
         'bio',
-        'price',        // <-- Đã thêm dấu phẩy ở đây
-        'treatments',   // Mới thêm
-        'experience',   // Mới thêm
+        'price',
+        'treatments',
+        'experience',
     ];
 
-    // Quan hệ: Bác sĩ thuộc về 1 Bệnh viện
+    // --- Quan hệ ngược lại: Bác sĩ thuộc về 1 User ---
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
     public function hospital() {
         return $this->belongsTo(Hospital::class);
     }
 
-    // Quan hệ: Bác sĩ thuộc về 1 Chuyên khoa
     public function specialty() {
         return $this->belongsTo(Specialty::class);
     }
 
-    // Quan hệ: Bác sĩ có nhiều lịch hẹn
     public function appointments() {
         return $this->hasMany(Appointment::class);
     }
